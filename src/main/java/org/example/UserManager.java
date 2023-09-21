@@ -2,9 +2,9 @@ package org.example;
 
 import java.util.Scanner;
 
-public class UserService {
+public class UserManager {
 
-    private void registerUser(UserDaoImpl userDaoImpl, Scanner scanner) {
+    public void registerUser(UserDaoImpl userDaoImpl, Scanner scanner) {
         System.out.println("Enter username: ");
         String username = scanner.next();
 
@@ -12,10 +12,14 @@ public class UserService {
         String password = scanner.next();
 
         User newUser = new User(username, password);
-        userDaoImpl.register(newUser);
+        if (userDaoImpl.register(newUser)) {
+            System.out.println("Registration successful! Please log in with your account to continue.");
+        } else {
+            System.out.println("Registration failed.");
+        }
     }
 
-    private void loginUser(UserDaoImpl userDaoImpl, Scanner scanner) {
+    public void loginUser(UserDaoImpl userDaoImpl, Scanner scanner) {
         System.out.println("Enter username: ");
         String username = scanner.next();
 
@@ -25,13 +29,9 @@ public class UserService {
         User user = userDaoImpl.login(username, password);
 
         if (user != null) {
-            System.out.println("Login successful!");
-            System.out.println("User Profile:");
-            System.out.println("Username: " + user.getUsername());
-            System.out.println("Id: " + user.getId());
+            System.out.println("Login successful! Welcome, " + user.getUsername() + ".");
         } else {
             System.out.println("Login failed. Please check your credentials.");
         }
     }
-
 }

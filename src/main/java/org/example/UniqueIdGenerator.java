@@ -8,5 +8,4 @@ public class UniqueIdGenerator {
         String result = randomId.toString();
         return Math.abs(result.hashCode());
     }
-
 }

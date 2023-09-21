@@ -6,6 +6,9 @@ public class User {
     private String password;
     private UniqueIdGenerator idGenerator = new UniqueIdGenerator();
 
+    public User() {
+    }
+
     public User(String username, String password) {
         this.id = idGenerator.generateId();
         this.username = username;

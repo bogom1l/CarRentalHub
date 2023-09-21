@@ -1,7 +1,10 @@
 package org.example;
 
-import java.io.*;
-import java.util.*;
+import java.io.File;
+import java.io.IOException;
+import java.util.ArrayList;
+import java.util.List;
+import java.util.Optional;
 import com.fasterxml.jackson.core.type.TypeReference;
 import com.fasterxml.jackson.databind.ObjectMapper;
 
@@ -27,6 +30,7 @@ public class UserDaoImpl implements UserDao {
             return new ArrayList<>();
         }
     }
+
     @Override
     public boolean register(User newUser) {
 
@@ -36,10 +40,7 @@ public class UserDaoImpl implements UserDao {
         }
 
         users.add(newUser);
-
         saveUsersToJson();
-
-        System.out.println("Registration successful!");
         return true;
     }
 
@@ -60,5 +61,4 @@ public class UserDaoImpl implements UserDao {
             e.printStackTrace();
         }
     }
-
 }
