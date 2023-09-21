@@ -16,8 +16,7 @@ public class UserDaoImpl implements UserDao {
         users = readUsersFromJson();
     }
 
-    @Override
-    public List<User> readUsersFromJson() {
+    private List<User> readUsersFromJson() {
         try {
             File file = new File("users.json");
             if (!file.exists()) {
@@ -33,7 +32,6 @@ public class UserDaoImpl implements UserDao {
 
     @Override
     public boolean register(User newUser) {
-
         if (users.stream().anyMatch(u -> u.getUsername().equals(newUser.getUsername()))) {
             System.out.println("Username already taken. Please choose another one.");
             return false;
@@ -41,6 +39,7 @@ public class UserDaoImpl implements UserDao {
 
         users.add(newUser);
         saveUsersToJson();
+
         return true;
     }
 
@@ -53,8 +52,7 @@ public class UserDaoImpl implements UserDao {
         return userOptional.orElse(null);
     }
 
-    @Override
-    public void saveUsersToJson() {
+    private void saveUsersToJson() {
         try {
             objectMapper.writeValue(new File("users.json"), users);
         } catch (IOException e) {
