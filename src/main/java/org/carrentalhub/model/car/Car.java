@@ -1,4 +1,4 @@
-package org.example;
+package org.carrentalhub.model.car;
 
 public class Car {
     private String make;

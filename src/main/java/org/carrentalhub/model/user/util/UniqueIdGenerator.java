@@ -1,4 +1,4 @@
-package org.example;
+package org.carrentalhub.model.user.util;
 
 import java.util.UUID;
 

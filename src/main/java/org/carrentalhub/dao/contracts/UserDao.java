@@ -1,4 +1,6 @@
-package org.example;
+package org.carrentalhub.dao.contracts;
+
+import org.carrentalhub.model.user.User;
 
 public interface UserDao {
     boolean register(User newUser);

@@ -1,4 +1,6 @@
-package org.example;
+package org.carrentalhub.model.user;
+
+import org.carrentalhub.model.user.util.UniqueIdGenerator;
 
 public class User {
     private int id;

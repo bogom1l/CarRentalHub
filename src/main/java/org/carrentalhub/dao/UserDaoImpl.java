@@ -1,4 +1,4 @@
-package org.example;
+package org.carrentalhub.dao;
 
 import java.io.File;
 import java.io.IOException;
@@ -7,6 +7,8 @@ import java.util.List;
 import java.util.Optional;
 import com.fasterxml.jackson.core.type.TypeReference;
 import com.fasterxml.jackson.databind.ObjectMapper;
+import org.carrentalhub.dao.contracts.UserDao;
+import org.carrentalhub.model.user.User;
 
 public class UserDaoImpl implements UserDao {
     private ObjectMapper objectMapper = new ObjectMapper();

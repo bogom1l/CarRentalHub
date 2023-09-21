@@ -1,4 +1,4 @@
-package org.example;
+package org.carrentalhub.model.car;
 
 public enum CarCategory {
     Sedan,

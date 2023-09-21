@@ -1,4 +1,9 @@
-package org.example;
+package org;
+
+import org.carrentalhub.ui.ConsoleUI;
+import org.carrentalhub.dao.contracts.UserDao;
+import org.carrentalhub.dao.UserDaoImpl;
+import org.carrentalhub.service.UserManager;
 
 public class Main {
     public static void main(String[] args) {

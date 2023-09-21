@@ -1,4 +1,4 @@
-package org.example;
+package org.carrentalhub.ui;
 
 import java.util.InputMismatchException;
 import java.util.Scanner;

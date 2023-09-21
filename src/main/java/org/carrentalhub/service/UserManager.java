@@ -1,4 +1,8 @@
-package org.example;
+package org.carrentalhub.service;
+
+import org.carrentalhub.model.user.User;
+import org.carrentalhub.dao.contracts.UserDao;
+import org.carrentalhub.ui.ConsoleUI;
 
 public class UserManager {
     private UserDao userDao;
