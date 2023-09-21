@@ -9,7 +9,7 @@ public class Main {
     public static void main(String[] args) {
 
         ConsoleUI consoleUI = new ConsoleUI();
-        UserDao userDao = new UserDaoImpl();
+        UserDao userDao = new UserDaoImpl(consoleUI);
         UserManager userService = new UserManager(userDao, consoleUI);
 
         while (true) {

@@ -9,18 +9,23 @@ import com.fasterxml.jackson.core.type.TypeReference;
 import com.fasterxml.jackson.databind.ObjectMapper;
 import org.carrentalhub.dao.contracts.UserDao;
 import org.carrentalhub.model.user.User;
+import org.carrentalhub.ui.ConsoleUI;
 
 public class UserDaoImpl implements UserDao {
+    private static final String filePath = "users.json";
+
+    private ConsoleUI consoleUI;
     private ObjectMapper objectMapper = new ObjectMapper();
     private List<User> users;
 
-    public UserDaoImpl() {
-        users = readUsersFromJson();
+    public UserDaoImpl(ConsoleUI consoleUI) {
+        this.users = readUsersFromJson();
+        this.consoleUI = consoleUI;
     }
 
     private List<User> readUsersFromJson() {
         try {
-            File file = new File("users.json");
+            File file = new File(filePath);
             if (!file.exists()) {
                 return new ArrayList<>();
             }
@@ -35,7 +40,7 @@ public class UserDaoImpl implements UserDao {
     @Override
     public boolean register(User newUser) {
         if (users.stream().anyMatch(u -> u.getUsername().equals(newUser.getUsername()))) {
-            System.out.println("Username already taken. Please choose another one.");
+            consoleUI.displayMessage("Username already taken. Please choose another one.");
             return false;
         }
 
@@ -56,7 +61,7 @@ public class UserDaoImpl implements UserDao {
 
     private void saveUsersToJson() {
         try {
-            objectMapper.writeValue(new File("users.json"), users);
+            objectMapper.writeValue(new File(filePath), users);
         } catch (IOException e) {
             e.printStackTrace();
         }
