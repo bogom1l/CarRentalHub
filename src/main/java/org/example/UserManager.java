@@ -1,37 +1,58 @@
 package org.example;
 
-import java.util.Scanner;
-
 public class UserManager {
+    private UserDao userDao;
+    private ConsoleUI consoleUI;
 
-    public void registerUser(UserDao userDao, Scanner scanner) {
-        System.out.println("Enter username: ");
-        String username = scanner.next();
+    public UserManager(UserDao userDao, ConsoleUI consoleUI) {
+        this.userDao = userDao;
+        this.consoleUI = consoleUI;
+    }
 
-        System.out.println("Enter password: ");
-        String password = scanner.next();
-
-        User newUser = new User(username, password);
-        if (userDao.register(newUser)) {
-            System.out.println("Registration successful! Please log in with your account to continue.");
-        } else {
-            System.out.println("Registration failed.");
+    public void processUserChoice(int choice) {
+        switch (choice) {
+            case 1:
+                registerUser();
+                break;
+            case 2:
+                loginUser();
+                break;
+            case 3:
+                exit();
+            default:
+                System.out.println("Invalid choice. Please try again.");
+                break;
         }
     }
 
-    public void loginUser(UserDao userDao, Scanner scanner) {
-        System.out.println("Enter username: ");
-        String username = scanner.next();
+    private void registerUser() {
+        String username = consoleUI.promptForUsername();
+        String password = consoleUI.promptForPassword();
 
-        System.out.println("Enter password: ");
-        String password = scanner.next();
+        User newUser = new User(username, password);
+
+        if (userDao.register(newUser)) {
+            consoleUI.displayMessage("Registration successful! Please log in to continue.");
+        } else {
+            consoleUI.displayMessage("Registration failed.");
+        }
+    }
+
+    private void loginUser() {
+        String username = consoleUI.promptForUsername();
+        String password = consoleUI.promptForPassword();
 
         User user = userDao.login(username, password);
 
         if (user != null) {
-            System.out.println("Login successful! Welcome, " + user.getUsername() + ".");
+            consoleUI.displayMessage("Login successful! Welcome, " + user.getUsername() + ".");
         } else {
-            System.out.println("Login failed. Please check your credentials.");
+            consoleUI.displayMessage("Login failed. Please check your credentials.");
         }
+    }
+
+    private void exit() {
+        consoleUI.displayMessage("Program successfully ended.");
+        System.exit(0);
     }
 }
