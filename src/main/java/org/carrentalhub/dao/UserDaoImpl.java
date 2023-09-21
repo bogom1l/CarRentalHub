@@ -19,8 +19,8 @@ public class UserDaoImpl implements UserDao {
     private List<User> users;
 
     public UserDaoImpl(ConsoleUI consoleUI) {
-        this.users = readUsersFromJson();
         this.consoleUI = consoleUI;
+        this.users = readUsersFromJson();
     }
 
     private List<User> readUsersFromJson() {
