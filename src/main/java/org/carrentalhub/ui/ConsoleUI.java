@@ -42,4 +42,28 @@ public class ConsoleUI {
     public void displayMessage(String message) {
         System.out.println(message);
     }
+
+    //-------------------------------
+    public int displayMenuForLoggedInUserAndGetChoice() {
+        int userChoice = 0;
+        boolean validInput = false;
+
+        while (!validInput) {
+            System.out.println("Choose an option:");
+            System.out.println("1. Logout");
+            System.out.println("2. nothing");
+            System.out.println("3. Exit");
+
+            try {
+                userChoice = scanner.nextInt();
+                scanner.nextLine();
+                validInput = true;
+            } catch (InputMismatchException ex) {
+                scanner.nextLine();
+                System.out.println("Invalid input. Please enter a number.");
+            }
+        }
+
+        return userChoice;
+    }
 }

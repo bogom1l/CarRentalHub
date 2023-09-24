@@ -1,6 +1,6 @@
 package org.carrentalhub.model.part;
 
-class Part {
+public class Part {
     private String name;
     private PartCategory category;
     private String Description;

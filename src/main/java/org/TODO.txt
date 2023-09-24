@@ -1,4 +1,5 @@
 TODO:
 
-all json files should be in carrentalhub/data package
+user should be able to logout
 
+all added cars should be saved into allcars.json

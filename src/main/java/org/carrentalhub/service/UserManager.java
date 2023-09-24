@@ -24,7 +24,7 @@ public class UserManager {
             case 3:
                 exit();
             default:
-                System.out.println("Invalid choice. Please try again.");
+                consoleUI.displayMessage("Invalid choice. Please try again.");
                 break;
         }
     }
@@ -50,13 +50,33 @@ public class UserManager {
 
         if (user != null) {
             consoleUI.displayMessage("Login successful! Welcome, " + user.getUsername() + ".");
+            user.setLoggedIn(true);
         } else {
             consoleUI.displayMessage("Login failed. Please check your credentials.");
         }
     }
 
+    public void logoutUser(User user) {
+        user.setLoggedIn(false);
+    }
+
     private void exit() {
         consoleUI.displayMessage("Program successfully ended.");
         System.exit(0);
+    }
+
+    //-----------------------------------------------------------------
+
+    public void processLoggedInUserChoice(int choice) {
+        switch (choice) {
+            case 1:
+                logoutUser();
+                break;
+            case 4:
+                exit();
+            default:
+                consoleUI.displayMessage("Invalid choice. Please try again.");
+                break;
+        }
     }
 }
